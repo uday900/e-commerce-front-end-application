@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-function SampleProductsInLandingPage({products, title}) {
+function SampleProductsInLandingPage(props) {
+  const {products, title} = props;
+  // products = products.slice(4)
   return (
     <>
     <div className="container pl-4 py-8">
@@ -14,18 +17,21 @@ function SampleProductsInLandingPage({products, title}) {
             {products.map((item) => (
               <div
                 key={item.id}
-                className="w-full h-auto flex flex-col items-center text-center bg-white shadow-md rounded-lg p-4"
+                className="w-full h-auto flex flex-col bg-white shadow-md rounded-lg p-4"
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.name}
                   className="w-56 h-auto object-cover rounded-md mb-2"
                 />
-                <h3 className="text-sm font-medium">{item.title}</h3>
+                <Link to = {`/mens/product/${item.id}`}>
+                <h3 className="font-medium hover:underline">{item.name}</h3>
+                </Link>
+                
+                <p className="text-gray-600">${item.price}</p>
               </div>
             ))}
             
-
           </div>
           <button>
           <i class="fa-solid fa-chevron-right mx-10"></i>

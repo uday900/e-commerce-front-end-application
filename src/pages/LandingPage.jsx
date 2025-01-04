@@ -4,6 +4,7 @@ import slider1 from '/slider1.png'
 import slider2 from '/slider2.png'
 import slider3 from '/slider3.png'
 import SampleProductsInLandingPage from '../components/SampleProductsInLandingPage'
+import { mens } from '../mock-data/mens'
 
 function LandingPage() {
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide
@@ -100,7 +101,7 @@ function LandingPage() {
           ))}
         </div>
       </div>
-      <SampleProductsInLandingPage products={items} title="New Arrival" />
+      <SampleProductsInLandingPage products={mens} title="Mens" />
       <SampleProductsInLandingPage products={items} title="New Arrival" />
       <SampleProductsInLandingPage products={items} title="New Arrival" />
 

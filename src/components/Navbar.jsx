@@ -4,14 +4,14 @@ const Navbar = () => {
   const path = useLocation();
   const navigate = useNavigate();
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+    <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md ">
       {/* Logo */}
       <div className="text-2xl font-bold text-black">
-        Shop<span className="text-blue-500">Ease</span>
+        <Link to="/" >Shop<span className="text-blue-500">Ease</span></Link>
       </div>
 
-{/* Navigation Links */}
-<div className="flex space-x-8 text-gray-600 font-medium">
+      {/* Navigation Links */}
+      <div className="flex space-x-8 text-gray-600 font-medium">
         <a href="#shop" className="hover:text-black">
           Shop
         </a>
@@ -38,17 +38,13 @@ const Navbar = () => {
           />
         </div>
 
-        
-</div>
 
-
-    
-
+      </div>
       {/* Buttons */}
       <div className="flex space-x-4">
         <button className={`text-sm font-semibold 
         ${path.pathname === '/login' && 'bg-black text-white px-3 py-2 rounded-lg'} text-gray-800`}
-        
+
         >
           <Link to="/login">Sign In</Link>
         </button>
