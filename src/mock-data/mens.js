@@ -8,7 +8,9 @@ export const mens = [
     category: "Shirts",
     brand: "Darla Dass",
     rating: 4.5,
-    ratings: 320
+    ratings: 320,
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Red", "Blue", "Green", "Black", "White"]
   },
   {
     id: 2,
@@ -19,9 +21,10 @@ export const mens = [
     category: "Jeans",
     brand: "Darla Denim",
     rating: 4.2,
-    ratings: 210
+    ratings: 210,
+    sizes: ["28", "30", "32", "34", "36", "38"],
+    colors: ["Blue", "Black", "Gray", "White"]
   },
-  
   {
     id: 4,
     name: "Classic Leather Belt",
@@ -31,7 +34,9 @@ export const mens = [
     category: "Accessories",
     brand: "Darla Accessories",
     rating: 4.3,
-    ratings: 150
+    ratings: 150,
+    sizes: ["Small", "Medium", "Large", "X-Large"],
+    colors: ["Brown", "Black", "Tan"]
   },
   {
     id: 5,
@@ -42,6 +47,8 @@ export const mens = [
     category: "Footwear",
     brand: "Darla Sport",
     rating: 4.8,
-    ratings: 610
+    ratings: 610,
+    sizes: ["6", "7", "8", "9", "10", "11"],
+    colors: ["White", "Black", "Gray", "Blue", "Red"]
   }
 ];

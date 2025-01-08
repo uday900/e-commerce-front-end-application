@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartProvider';
 const Navbar = () => {
   const path = useLocation();
   const navigate = useNavigate();
+  const [isLoggedIn, setisLoggedIn] = useState(true)
+  const { cartCount } = useContext(CartContext);
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md ">
+    <nav className="flex items-center justify-between px-10 py-4 bg-white border border-b-2 ">
       {/* Logo */}
       <div className="text-2xl font-bold text-black">
         <Link to="/" >Shop<span className="text-blue-500">Ease</span></Link>
@@ -12,18 +15,18 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <div className="flex space-x-8 text-gray-600 font-medium">
-        <a href="#shop" className="hover:text-black">
+        <Link to="/mens" className="hover:text-black">
           Shop
-        </a>
-        <a href="#men" className="hover:text-black">
+        </Link>
+        <Link to="/mens" className="hover:text-black">
           Men
-        </a>
-        <a href="#women" className="hover:text-black">
+        </Link>
+        <Link to="/mens" className="hover:text-black">
           Women
-        </a>
-        <a href="#kids" className="hover:text-black">
+        </Link>
+        <Link to="/mens" className="hover:text-black">
           Kids
-        </a>
+        </Link>
       </div>
 
       {/* Search, Cart, and User Actions */}
@@ -40,25 +43,41 @@ const Navbar = () => {
 
 
       </div>
-      {/* Buttons */}
-      <div className="flex space-x-4">
-        <button className={`text-sm font-semibold 
-        ${path.pathname === '/login' && 'bg-black text-white px-3 py-2 rounded-lg'} text-gray-800`}
 
-        >
-          <Link to="/login">Sign In</Link>
-        </button>
-        <button className="text-sm font-semibold px-4 py-1 border border-gray-800 rounded-md hover:bg-gray-200">
-          Sign Up
-        </button>
-        {/* Cart Icon */}
+      <div className="flex space-x-6">
+        {isLoggedIn ? <>
+
+          <button className="">
+          <i class="fa-regular fa-heart"></i>
+          </button>
+          <button className=""
+          // text-sm font-semibold px-4 py-1 border border-gray-800 rounded-md hover:bg-gray-200"
+          >
+            <i class="fa-regular fa-user"></i>
+          </button>
+        </> : <>
+
+          <button className={`text-sm font-semibold 
+        ${path.pathname === '/login' && 'bg-black text-white px-3 py-2 rounded-lg'} text-gray-800`}
+          >
+            <Link to="/login">Sign In</Link>
+          </button>
+          <button className="text-sm font-semibold px-4 py-1 border border-gray-800 rounded-md hover:bg-gray-200">
+            Sign Up
+          </button>
+        </>}
+        <Link to = '/cart'>
         <button className="relative text-gray-600 hover:text-black">
           <i className="fas fa-shopping-cart text-lg"></i>
-          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1">
-            3
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1">
+            {cartCount}
           </span>
         </button>
+        </Link>
+        
       </div>
+
+
     </nav>
   );
 };

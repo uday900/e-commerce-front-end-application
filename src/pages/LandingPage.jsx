@@ -21,17 +21,13 @@ function LandingPage() {
     { id: 4, image: "https://via.placeholder.com/150", title: "Dresses" },
   ];
 
-  // setTimeout(() => {
-  //   setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  // }, 2000);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+  //   }, 3000);
+  //   return () => clearInterval(interval);
+  // }, [slides.length]);
 
   // Handle next slide
   const handleNext = () => {
@@ -102,8 +98,7 @@ function LandingPage() {
         </div>
       </div>
       <SampleProductsInLandingPage products={mens} title="Mens" />
-      <SampleProductsInLandingPage products={items} title="New Arrival" />
-      <SampleProductsInLandingPage products={items} title="New Arrival" />
+      <SampleProductsInLandingPage products={mens} title="New Arrival" />
 
       
     </div>
