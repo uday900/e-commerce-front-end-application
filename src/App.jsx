@@ -6,20 +6,28 @@ import SingleProduct from './components/SingleProduct'
 import Navbar from './components/Navbar'
 import MensCategory from './pages/MensCategory'
 import Cart from './pages/Cart'
+import ScrollToTop from './components/ScrollToTop'
+import Dashboard from './admin/pages/Dashboard'
 
 function App() {
 
   return (
     <>
+      <ScrollToTop />
 
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
         {/* categories */}
         <Route path='/mens' element={<MensCategory />} />
-        <Route path='/mens/product/:id' element={<SingleProduct/>} />
+        <Route path='/mens/product/:id' element={<SingleProduct />} />
 
-        <Route path='/cart' element={<Cart/>} />  
+        <Route path='/cart' element={<Cart />} />
+
+
+
+        {/* Admin section */}
+        <Route path='/admin/account' element={<Dashboard />} />
       </Routes>
 
     </>

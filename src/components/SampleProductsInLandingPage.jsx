@@ -7,7 +7,7 @@ function SampleProductsInLandingPage(props) {
   // products = products.slice(4)
   return (
     <>
-    <div className="container pl-4 py-8">
+    <div className="container pl-8 py-8">
         {/* Section Title */}
         <h2 className="text-xl font-bold mb-4">{title}</h2>
 

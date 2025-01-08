@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isLoggedIn, setisLoggedIn] = useState(true)
   const { cartCount } = useContext(CartContext);
   return (
-    <nav className="flex items-center justify-between px-10 py-4 bg-white border border-b-2 ">
+    <nav className="flex items-center justify-between px-10 py-4 bg-white border border-b-2 sticky top-0 z-10">
       {/* Logo */}
       <div className="text-2xl font-bold text-black">
         <Link to="/" >Shop<span className="text-blue-500">Ease</span></Link>
@@ -54,6 +54,10 @@ const Navbar = () => {
           // text-sm font-semibold px-4 py-1 border border-gray-800 rounded-md hover:bg-gray-200"
           >
             <i class="fa-regular fa-user"></i>
+          </button>
+
+          <button>
+            Log out <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </button>
         </> : <>
 
