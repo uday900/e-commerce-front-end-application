@@ -8,6 +8,9 @@ import MensCategory from './pages/MensCategory'
 import Cart from './pages/Cart'
 import ScrollToTop from './components/ScrollToTop'
 import Dashboard from './admin/pages/Dashboard'
+import AddProduct from './admin/comps/AddProduct'
+import AdminApp from './admin/AdminRoutes'
+import AdminRoutes from './admin/AdminRoutes'
 
 function App() {
 
@@ -27,7 +30,7 @@ function App() {
 
 
         {/* Admin section */}
-        <Route path='/admin/account' element={<Dashboard />} />
+        <Route path='/admin/*' element={<AdminRoutes />} />
       </Routes>
 
     </>

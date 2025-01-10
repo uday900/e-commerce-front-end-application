@@ -22,12 +22,13 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 h-screen text-black fixed border px-2 border-slate-200">
-      <div className="p-4 text-2xl font-semibold">Dashboard</div>
+    <div className="w-64 px-5  h-screen text-black fixed border border-slate-200">
+      {/* <div className="p-4 text-2xl font-semibold">Dashboard</div> */}
       <ul className="mt-4">
         {/* Dashboard */}
         <li className="p-2 hover:bg-gray-300 cursor-pointer">
-          <a href="#dashboard">Dashboard</a>
+          
+          <Link to="/admin/dashboard">Dashboard</Link>
         </li>
 
         {/* Products Section */}

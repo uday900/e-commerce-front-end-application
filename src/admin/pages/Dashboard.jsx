@@ -1,11 +1,17 @@
 import Sidebar from '../comps/Sidebar';
 import Navbar from '../comps/Nav';
+import AddProduct from '../comps/AddProduct';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const handleAddProduct = () => {
     alert('Add Product button clicked!');
   };
-
+  const [showAddProductModal, setShowAddProductModal] = useState(false);
+const category = "mens"
+  const navigate = useNavigate();
+const [products, setProducts] = useState([]);
   // Example categories data
   const categories = [
     'Electronics',
@@ -17,23 +23,35 @@ const Dashboard = () => {
     'Toys',
   ];
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4000/mens?category=mens`);
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, [category]);
+
   return (
+    <>
+    {/* {showAddProductModal && <AddProduct setShowAddProductModal={setShowAddProductModal}/>} */}
     <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 ml-64">
-        <Navbar />
-        <div className="p-6 mt-16">
+      <div className="flex-1">
+        <div className="p-6 ">
           {/* Header Section */}
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold">Dashboard</h2>
             <button
-              onClick={handleAddProduct}
+              onClick={() => navigate('/admin/manage-products')}
               className="secondary-button"
             >
-              + Add Product
+             <i class="fa-solid fa-table-cells-large"></i> Manage Products
             </button>
           </div>
 
@@ -64,6 +82,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
