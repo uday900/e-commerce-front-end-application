@@ -11,6 +11,7 @@ import AddProduct from './admin/comps/AddProduct'
 import AdminApp from './admin/AdminRoutes'
 import AdminRoutes from './admin/AdminRoutes'
 import TestApp from './test/App'
+import CategorySection from './pages/CategorySection'
 
 function App() {
 
@@ -22,8 +23,11 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
        
-        <Route path='/mens' element={<MensCategory />} />
+        <Route path='/woman' element={<MensCategory />} />
         <Route path='/mens/product/:id' element={<SingleProduct />} />
+
+        <Route path='/shop/:category' element = {<CategorySection/>} />
+        <Route path='/shop/:category/product/:id' element={<SingleProduct />} />
 
         <Route path='/cart' element={<Cart />} />
 

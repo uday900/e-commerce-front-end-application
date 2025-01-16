@@ -18,7 +18,7 @@ function Card({product}) {
             <p className="text-gray-700 mt-2">Price: ${product.price}</p>
             <button
               className="primary-button mt-1"
-              onClick={() => navigate(`/admin/product-details/${product.id}`)} 
+              onClick={() => navigate(`/admin/product-details/${product.id}/${product.category}`)} 
             >
               View Details
             </button>

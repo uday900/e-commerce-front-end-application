@@ -1,48 +1,72 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const AddProduct = () => {
-  const { register, handleSubmit, reset } = useForm();
+const UpdateProduct = () => {
+  const { id } = useParams(); // Get the product ID from URL params
+  const { register, handleSubmit, setValue, reset } = useForm();
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // Fetch categories for dropdown
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/categories');
+      const response = await axios.get("http://localhost:4000/categories");
       setCategories(response.data);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
+
+  // Fetch product details by ID
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/products/${id}`);
+      const product = response.data;
+
+      // Populate form with product details
+      Object.keys(product).forEach((key) => {
+        setValue(key, product[key]);
+      });
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
+  };
+
   useEffect(() => {
     fetchCategories();
-  }, [])
-  
+    fetchProduct();
+  }, [id]);
+
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
-      
+
       // Append data to FormData object
       Object.keys(data).forEach((key) => {
         formData.append(key, data[key]);
       });
-  
-      // formData.append("id", 41);
-      // formData.append("category", category);
-       // Example ID
-  
-      // Post to the new URL
-      await axios.post('http://localhost:4000/products', formData, {
+
+      // Update product details via API
+      await axios.put(`http://localhost:4000/products/${id}`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-  
+
+      alert("Product updated successfully!");
       reset();
     } catch (error) {
-      console.error("Error adding product:", error);
+      console.error("Error updating product:", error);
     }
   };
+
+  if (loading) {
+    return <div className="text-center mt-10">Loading product details...</div>;
+  }
 
   return (
     <div className="flex justify-start">
@@ -50,7 +74,7 @@ const AddProduct = () => {
       <div className="flex-grow">
         <div className="flex justify-start">
           <div className="bg-white p-6 rounded-lg w-full max-w-3xl">
-            <h2 className="text-2xl font-bold mb-4">Add Product</h2>
+            <h2 className="text-2xl font-bold mb-4">Update Product</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
@@ -87,19 +111,13 @@ const AddProduct = () => {
                   <label className="block text-sm font-medium mb-2">Category</label>
                   <select
                     className="w-full border border-gray-300 rounded-lg p-2"
-                    // value={category}
-                    // onChange={(e) => setCategory(e.target.value)}
                     {...register("category", { required: true })}
-                    
                   >
-                    { categories.map((category) => (
+                    {categories.map((category) => (
                       <option key={category.id} value={category.name}>
                         {category.name}
                       </option>
                     ))}
-                    {/* <option value="mens">Men's Clothing</option>
-                    <option value="womens">Women's Clothing</option>
-                    <option value="kids">Kids Wear</option> */}
                   </select>
                 </div>
                 <div className="mb-4 w-1/2">
@@ -169,7 +187,7 @@ const AddProduct = () => {
                   type="submit"
                   className="primary-button"
                 >
-                  Add Product
+                  Update Product
                 </button>
               </div>
             </form>
@@ -180,4 +198,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

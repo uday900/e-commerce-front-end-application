@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Card from '../comps/Card';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/admin/products');
+        const response = await axios.get('http://localhost:4000/products');
         setProducts(response.data);
         console.log('Products from back-end:', response.data);
       } catch (error) {
@@ -24,7 +25,7 @@ const Dashboard = () => {
     <div className="p-6">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">Dashboard</h2>
+        <h2 className="text-2xl font-bold text-purple-500">Welcome Back</h2>
       </div>
 
       {/* Buttons Section */}
@@ -35,12 +36,12 @@ const Dashboard = () => {
         >
           Manage Categories
         </button>
-        <button
+        {/* <button
           onClick={() => navigate('/admin/manage-products')}
           className="primary-button"
         >
           Manage Products
-        </button>
+        </button> */}
         <button
           onClick={() => navigate('/admin/add-product')}
           className="primary-button"
@@ -54,14 +55,8 @@ const Dashboard = () => {
         <h3 className="text-xl font-semibold mb-4">All Products</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <div
-              key={product.id}
-              className="p-4 border rounded shadow hover:shadow-md"
-            >
-              <h4 className="text-lg font-bold">{product.name}</h4>
-              <p>{product.description}</p>
-              <p className="text-gray-600">${product.price}</p>
-            </div>
+            <Card key={product.id} product={product} />
+
           ))}
         </div>
       </div>

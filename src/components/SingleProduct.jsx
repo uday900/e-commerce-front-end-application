@@ -1,15 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { Link, useParams } from 'react-router-dom';
 import { mens } from '../mock-data/mens';
 import SampleProductsInLandingPage from './SampleProductsInLandingPage';
 import { CartContext } from '../context/CartProvider';
+import axios from 'axios';
 
 function SingleProduct() {
 
   const { id } = useParams();
-  const product = mens.filter((item) => item.id === +id)[0];
   const { addToCart } = useContext(CartContext);
+
+  console.log(id)
+  const [product, setProduct] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost:4000/products/${id}`);
+                setProduct(response.data);
+                console.log('Products from back-end:', response.data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -23,7 +40,8 @@ function SingleProduct() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <img
-              src={product.image}
+              // src={product.image}
+              src=''
               alt="Raven Hoodie"
               className="w-full h-96 object-cover rounded-lg sticky top-16"
             />
@@ -48,28 +66,31 @@ function SingleProduct() {
               <h2 className="text-sm font-semibold mb-2">Select Size</h2>
 
               <div className="flex space-x-2">
-                {product.sizes.map((size, index) => (
+                {/* {product.sizes.map((size, index) => (
                   <button
                     key={index}
                     className="border border-gray-200 rounded-md px-3 py-1 hover:bg-slate-200"
                   >
                     {size}
                   </button>
-                ))}
+                ))} */}
+
+                { product.sizes}
               </div>
             </div>
 
             <div className="mt-5">
               <h2 className="text-sm font-semibold mb-2">Colour Available</h2>
               <div className="flex space-x-2 mb-4 ">
-                {product.colors.map((color, index) => (
+                {/* {product.colors.map((color, index) => (
                   <span
                     key={index}
                     className="inline-block border border-slate-200 p-2 w-5 h-5 rounded-full"
                     style={{ backgroundColor: color.toLowerCase() }}
                     title={color}
                   ></span>
-                ))}
+                ))} */}
+                { product.colors}
               </div>
             </div>
 

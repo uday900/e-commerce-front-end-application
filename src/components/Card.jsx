@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Card({ product }) {
+function Card({ product, category }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleFavorite = () => {
@@ -11,7 +11,8 @@ function Card({ product }) {
   return (
     <div className="w-full h-auto flex flex-col bg-white shadow-md rounded-lg p-4 relative">
       <img
-        src={product.image}
+        // src={product.image}
+        src=""
         alt={product.name}
         className="w-56 h-auto object-cover rounded-md mb-2"
       />
@@ -23,7 +24,7 @@ function Card({ product }) {
       >
         <i class="fa-regular fa-heart"></i>
       </button>
-      <Link to={`/mens/product/${product.id}`}>
+      <Link to={`/shop/${category}/product/${product.id}`}>
         <h3 className="font-medium hover:underline">{product.name}</h3>
       </Link>
       <p className="text-gray-600">${product.price}</p>

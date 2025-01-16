@@ -1,11 +1,34 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartProvider';
 const Navbar = () => {
   const path = useLocation();
   const navigate = useNavigate();
   const [isLoggedIn, setisLoggedIn] = useState(true)
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { cartCount } = useContext(CartContext);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/categories');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        const data = await response.json();
+        setCategories(data); // Update categories state
+        setLoading(false); // Turn off loading
+      } catch (err) {
+        setError(err.message); // Set error message
+        setLoading(false); // Turn off loading
+      }
+    };
+
+    fetchCategories();
+  }, []);
+  const name = "UDAY";
+  console.log(name.toLowerCase)
   return (
     <nav className="flex items-center justify-between px-10 py-4 bg-white border border-b-2 sticky top-0 z-10">
       {/* Logo */}
@@ -15,7 +38,16 @@ const Navbar = () => {
 
       {/* Navigation Links */}
       <div className="flex space-x-8 text-gray-600 font-medium">
-        <Link to="/mens" className="hover:text-black">
+        { categories.map((category) => (
+          <Link
+            key={category.id}
+            to={`/shop/${category.name.toLowerCase()}`}
+            className="hover:text-black"
+          >
+            {category.name}
+          </Link>
+        ))}
+        {/* <Link to="/mens" className="hover:text-black">
           Shop
         </Link>
         <Link to="/mens" className="hover:text-black">
@@ -26,7 +58,7 @@ const Navbar = () => {
         </Link>
         <Link to="/mens" className="hover:text-black">
           Kids
-        </Link>
+        </Link> */}
       </div>
 
       {/* Search, Cart, and User Actions */}

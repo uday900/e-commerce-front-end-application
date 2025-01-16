@@ -76,18 +76,15 @@ const Sidebar = () => {
 
         {/* Orders */}
         <li className="p-2 hover:bg-gray-300 cursor-pointer">
-          <a href="#orders">Orders</a>
+          <Link to = '/admin/orders'>Orders</Link>
         </li>
 
         {/* Customers */}
         <li className="p-2 hover:bg-gray-300 cursor-pointer">
-          <a href="#customers">Customers</a>
+          <Link to = '/admin/users' >Customers</Link>
         </li>
 
-        {/* Reports */}
-        <li className="p-2 hover:bg-gray-300 cursor-pointer">
-          <a href="#reports">Reports</a>
-        </li>
+        
       </ul>
     </div>
   );

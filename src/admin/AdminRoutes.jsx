@@ -7,6 +7,9 @@ import ManageProducts from './pages/ManageProducts';
 import CategoryProducts from './comps/CategoryProducts';
 import ProductDetails from './comps/ProductDetails';
 import ManageCategories from './pages/ManageCategories';
+import UpdateProduct from './comps/UpdateProduct';
+import Orders from './pages/Orders';
+import AdminLogin from './pages/AdminLogin';
 // import ManageProducts from './pages/ManageProducts';
 
 const AdminRoutes = () => {
@@ -18,13 +21,18 @@ const AdminRoutes = () => {
       <Layout >
         {/* <Navbar /> */}
         <Routes>
+          <Route path='/login' element={<AdminLogin/>} />
+
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path='/add-product' element={<AddProduct />} />
+          <Route path='/update-product/:id' element={<UpdateProduct />} />
           <Route path='/manage-products' element={<ManageProducts />} />
           <Route path='/manage-categories' element={<ManageCategories/>} />
           
           <Route path='/products' element={<CategoryProducts/>} />
-          <Route path='/product-details/:id' element={<ProductDetails/>} /> 
+          <Route path='/product-details/:id/:category' element={<ProductDetails/>} /> 
+
+          <Route path='/orders' element={<Orders/>} />
 
         </Routes>
       </Layout>

@@ -22,12 +22,12 @@ function LandingPage() {
   ];
 
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  //   }, 3000);
-  //   return () => clearInterval(interval);
-  // }, [slides.length]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   // Handle next slide
   const handleNext = () => {
