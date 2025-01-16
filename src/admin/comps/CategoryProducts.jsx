@@ -15,15 +15,18 @@ function CategoryProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/${name}`);
-        setProducts(response.data);
+        const response = await axios.get(`http://localhost:4000/categories/1`);
+        setProducts(response.data.products);
+        // console.log(response.data)
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
 
     fetchProducts();
-  }, [name]);
+  }, [id]);
+
+
 
   // Remove category handler
   const handleRemoveCategory = async () => {
@@ -93,6 +96,7 @@ function CategoryProducts() {
       </div>
 
       </div>
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (

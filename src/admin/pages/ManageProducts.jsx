@@ -60,7 +60,7 @@ const ManageProducts = () => {
               <button
               key={index}
               className="secondary-button"
-              onClick={() => navigate(`/admin/products?id=${category.id}&name=${category.name}`)}
+              onClick={() => navigate(`/admin/products?id=${category.id}&name=${category.name.toLowerCase()}`)}
             >
               {category.name}
             </button>
