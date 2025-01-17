@@ -4,25 +4,35 @@ import FilterSidebar from '../components/FilterSidebar';
 import { Link, useParams } from 'react-router-dom';
 import Card from '../components/Card';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../slices/ProductSlice';
 
 function CategorySection() {
 
     const { category } = useParams();
-    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState([]);
 
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         try {
+    //             const response = await axios.get('http://localhost:4000/products');
+    //             setProducts(response.data);
+    //             console.log('Products from back-end:', response.data);
+    //         } catch (error) {
+    //             console.error('Error fetching products:', error);
+    //         }
+    //     };
+
+    //     fetchProducts();
+    // }, []);
+
+    const dispatch = useDispatch();
+    const { data:products, isLoading } = useSelector((state) => state.products);
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:4000/products');
-                setProducts(response.data);
-                console.log('Products from back-end:', response.data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
-        fetchProducts();
-    }, []);
+    if (isLoading) return <p>Loading...</p>;
     return <>
         <Navbar />
 

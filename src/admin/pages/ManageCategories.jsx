@@ -1,40 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ConfirmationModal from '../comps/ConfirmationModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCategory, fetchCategories } from '../../slices/CategorySlice';
 
 export default function ManageCategories() {
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState('');
   const [editCategory, setEditCategory] = useState(null);
   const [editName, setEditName] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categoryIdToDelete, setCategoryIdToDelete] = useState(null);
 
+  const { data: categories, isLoading } = useSelector((state) => state.categories)
+  const dispatch = useDispatch()
+  
+  
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    dispatch(fetchCategories())
+  }, [dispatch])
 
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/categories');
-      setCategories(response.data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
+  
+
 
   const handleAddCategory = async () => {
     if (!newCategory.trim()) return;
 
-    try {
-      const response = await axios.post('http://localhost:4000/categories', {
-        name: newCategory,
-      });
-      setCategories([...categories, response.data]);
-      setNewCategory('');
-    } catch (error) {
-      console.error('Error adding category:', error);
-    }
+    dispatch(addCategory(newCategory))
+    setNewCategory("")
+
   };
 
   const handleDeleteCategory = async (id) => {

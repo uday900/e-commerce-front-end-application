@@ -1,44 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../slices/CategorySlice';
 const Navbar = () => {
   const path = useLocation();
   const navigate = useNavigate();
   const [isLoggedIn, setisLoggedIn] = useState(true)
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { cartCount } = useContext(CartContext);
 
+  const dispatch = useDispatch()
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch('http://localhost:4000/categories');
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        const data = await response.json();
-        setCategories(data); // Update categories state
-        setLoading(false); // Turn off loading
-      } catch (err) {
-        setError(err.message); // Set error message
-        setLoading(false); // Turn off loading
-      }
-    };
+    dispatch(fetchCategories())
+  }, [dispatch])
 
-    fetchCategories();
-  }, []);
-  const name = "UDAY";
-  console.log(name.toLowerCase)
+  const { data: categories, isLoading } = useSelector((state) => state.categories)
   return (
     <nav className="flex items-center justify-between px-10 py-4 bg-white border border-b-2 sticky top-0 z-10">
       {/* Logo */}
       <div className="text-2xl font-bold text-black">
-        <Link to="/" >Shop<span className="text-blue-500">Ease</span></Link>
+        <Link to="/" >
+          Shop<span className="text-blue-500">Ease</span>
+        </Link>
       </div>
 
       {/* Navigation Links */}
       <div className="flex space-x-8 text-gray-600 font-medium">
-        { categories.map((category) => (
+        {categories.map((category) => (
           <Link
             key={category.id}
             to={`/shop/${category.name.toLowerCase()}`}
@@ -47,18 +35,7 @@ const Navbar = () => {
             {category.name}
           </Link>
         ))}
-        {/* <Link to="/mens" className="hover:text-black">
-          Shop
-        </Link>
-        <Link to="/mens" className="hover:text-black">
-          Men
-        </Link>
-        <Link to="/mens" className="hover:text-black">
-          Women
-        </Link>
-        <Link to="/mens" className="hover:text-black">
-          Kids
-        </Link> */}
+
       </div>
 
       {/* Search, Cart, and User Actions */}
@@ -80,7 +57,7 @@ const Navbar = () => {
         {isLoggedIn ? <>
 
           <button className="">
-          <i class="fa-regular fa-heart"></i>
+            <i class="fa-regular fa-heart"></i>
           </button>
           <button className=""
           // text-sm font-semibold px-4 py-1 border border-gray-800 rounded-md hover:bg-gray-200"
@@ -102,15 +79,15 @@ const Navbar = () => {
             Sign Up
           </button>
         </>}
-        <Link to = '/cart'>
-        <button className="relative text-gray-600 hover:text-black">
-          <i className="fas fa-shopping-cart text-lg"></i>
+        <Link to='/cart'>
+          <button className="relative text-gray-600 hover:text-black">
+            <i className="fas fa-shopping-cart text-lg"></i>
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1">
-            {cartCount}
-          </span>
-        </button>
+              {cartCount}
+            </span>
+          </button>
         </Link>
-        
+
       </div>
 
 
