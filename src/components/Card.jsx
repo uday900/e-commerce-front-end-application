@@ -9,25 +9,33 @@ function Card({ product, category }) {
   };
 
   return (
-    <div className="w-full h-auto flex flex-col bg-white shadow-md rounded-lg p-4 relative">
-      <img
-        // src={product.image}
-        src=""
+    <div className="w-full h-auto flex flex-col bg-white  rounded-lg relative">
+
+      {product.image && <img
+        src={product.image}
         alt={product.name}
-        className="w-56 h-auto object-cover rounded-md mb-2"
+        className="w-full h-auto object-cover rounded-md mb-2"
       />
+      }
       <button
         onClick={toggleFavorite}
-        className="text-sm absolute top-5 right-5 bg-white px-2 py-1 rounded-full text-gray-400 hover:text-red-500 focus:outline-none"
+        className="text-sm absolute top-5 right-5 bg-white  px-2 py-1 rounded-full text-gray-400 hover:text-red-500 focus:outline-none"
         aria-label="Add to favorites"
-      
+
       >
         <i class="fa-regular fa-heart"></i>
       </button>
-      <Link to={`/shop/${category}/product/${product.id}`}>
-        <h3 className="font-medium hover:underline">{product.name}</h3>
-      </Link>
-      <p className="text-gray-600">${product.price}</p>
+      <div className="flex ">
+        <div >
+          <Link to={`/shop/${category}/product/${product.id}`}>
+            <h3 className="font-medium hover:underline">{product.name}</h3>
+          </Link>
+          <p className="text-gray-600">{product.brand}</p>
+        </div>
+        <div className="ml-auto">
+        <p className="px-2 py-1 bg-slate-100 h-auto text-gray-600 font-bold rounded-lg">${product.price}</p>
+        </div>
+      </div>
     </div>
   );
 }

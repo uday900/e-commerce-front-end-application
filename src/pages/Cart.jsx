@@ -103,7 +103,7 @@ function Cart() {
           <p className="text-lg">
             Grand Total: <span className="font-bold">₹{totalPrice}</span>
           </p>
-          <button className="mt-6 w-auto bg-green-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-green-600">
+          <button className="mt-5 secondary-button">
             Checkout
           </button>
         </div>

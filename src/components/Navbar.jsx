@@ -59,11 +59,11 @@ const Navbar = () => {
           <button className="">
             <i class="fa-regular fa-heart"></i>
           </button>
-          <button className=""
+          <Link to = '/profile' className=""
           // text-sm font-semibold px-4 py-1 border border-gray-800 rounded-md hover:bg-gray-200"
           >
             <i class="fa-regular fa-user"></i>
-          </button>
+          </Link>
 
           <button>
             Log out <i class="fa-solid fa-arrow-right-from-bracket"></i>

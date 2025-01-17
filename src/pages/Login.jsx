@@ -1,6 +1,7 @@
 import React from 'react';
 import image from '/login-page-front-image.png'
 import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -58,9 +59,9 @@ const Login = () => {
               </div>
             </div>
             <div className="text-right mb-4">
-              <a href="#" className="text-sm text-indigo-600 hover:underline">
+              <Link to='/forgot-password'  className="text-sm text-indigo-600 hover:underline">
                 Forgot your password?
-              </a>
+              </Link>
             </div>
             <button
               type="submit"
@@ -73,9 +74,9 @@ const Login = () => {
           <div className=" mt-4">
             <p className="text-sm">
               Don’t have an account?{' '}
-              <a href="#" className="text-indigo-600 hover:underline">
+              <Link to='/sign-up' className="text-indigo-600 hover:underline">
                 Sign up
-              </a>
+              </Link>
             </p>
           </div>
         </div>

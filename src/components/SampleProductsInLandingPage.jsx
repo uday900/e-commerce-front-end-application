@@ -14,7 +14,7 @@ function SampleProductsInLandingPage(props) {
         {/* Slider Container */}
         <div className="flex items-center">
           {/* Items */}
-          <div className="grid grid-cols-4 gap-10">
+          <div className="grid grid-cols-5 gap-10">
 
             {products.map((item) => (
               <Card key={item.id} product={item} />

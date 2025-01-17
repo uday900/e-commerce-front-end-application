@@ -106,5 +106,32 @@ export const mens = [
         date: "2024-01-09",
       }
     ]
+  },
+  {
+    id: 5,
+    name: "Sports Sneakers",
+    description: "Lightweight and durable sneakers perfect for workouts and casual wear.",
+    image: "https://via.placeholder.com/200x300?text=Sports+Sneakers",
+    price: 2500,
+    category: "Footwear",
+    brand: "Darla Sport",
+    rating: 4.8,
+    totalRatings: 610,
+    sizes: ["6", "7", "8", "9", "10", "11"],
+    colors: ["White", "Black", "Gray", "Blue", "Red"],
+    reviews: [
+      {
+        user: "Mark Taylor",
+        rating: 5,
+        comment: "Best sneakers I’ve ever bought. Super comfortable and durable.",
+        date: "2024-01-08",
+      },
+      {
+        user: "Sophia Brown",
+        rating: 4,
+        comment: "Very good sneakers, but the laces are a bit short.",
+        date: "2024-01-09",
+      }
+    ]
   }
 ];

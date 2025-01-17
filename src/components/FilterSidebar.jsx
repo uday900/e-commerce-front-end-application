@@ -32,12 +32,12 @@ const FilterSidebar = () => {
             <div className="mb-6">
                 <h3 className="font-semibold mb-2">Colors</h3>
                 <div className="grid grid-cols-6 gap-2">
-                    <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
+                    <div className="w-6 h-6 border border-slate-50 bg-purple-500 rounded-full"></div>
                     <div className="w-6 h-6 bg-black rounded-full"></div>
                     <div className="w-6 h-6 bg-red-500 rounded-full"></div>
                     <div className="w-6 h-6 bg-orange-500 rounded-full"></div>
-                    <div className="w-6 h-6 bg-navy-500 rounded-full"></div>
-                    <div className="w-6 h-6 bg-gray-400 rounded-full"></div>
+                    <div className="w-6 h-6 border border-slate-200 bg-white rounded-full"></div>
+                    <div className="w-6 h-6 border border-slate-100 bg-gray-400 rounded-full"></div>
                 </div>
             </div>
 
